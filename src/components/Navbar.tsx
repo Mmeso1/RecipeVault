@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { 
-  ChefHat, 
-  Search, 
-  Plus, 
-  BookOpen, 
-  Folder, 
-  ShoppingCart, 
-  Menu, 
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  ChefHat,
+  Search,
+  Plus,
+  BookOpen,
+  Folder,
+  ShoppingCart,
+  Menu,
   X,
-  MapPin
-} from 'lucide-react';
+  MapPin,
+} from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/', icon: ChefHat },
-    { name: 'Recipes', href: '/recipes', icon: BookOpen },
-    { name: 'Folders', href: '/folders', icon: Folder },
-    { name: 'Grocery', href: '/grocery', icon: ShoppingCart },
-    { name: 'Stores', href: '/stores', icon: MapPin },
+    { name: "Home", href: "/", icon: ChefHat },
+    { name: "Recipes", href: "/recipes", icon: BookOpen },
+    { name: "Folders", href: "/folders", icon: Folder },
+    { name: "Grocery", href: "/grocery", icon: ShoppingCart },
+    { name: "Stores", href: "/stores", icon: MapPin },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-seafoam-200/30 shadow-sm"
@@ -59,8 +59,8 @@ const Navbar = () => {
                   to={item.href}
                   className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
                     isActive(item.href)
-                      ? 'bg-seafoam-500/10 text-seafoam-700'
-                      : 'text-slate-600 hover:text-seafoam-700 hover:bg-seafoam-500/5'
+                      ? "bg-seafoam-500/10 text-seafoam-700"
+                      : "text-slate-600 hover:text-seafoam-700 hover:bg-seafoam-500/5"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -79,7 +79,7 @@ const Navbar = () => {
             >
               <Search className="w-5 h-5" />
             </motion.button>
-            
+
             <Link to="/add">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -96,7 +96,11 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-slate-600 hover:text-seafoam-700 rounded-lg"
             >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -105,7 +109,7 @@ const Navbar = () => {
         {isMenuOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             className="md:hidden py-4 border-t border-seafoam-200/50"
           >
@@ -119,8 +123,8 @@ const Navbar = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-lg ${
                       isActive(item.href)
-                        ? 'bg-seafoam-500/10 text-seafoam-700'
-                        : 'text-slate-600 hover:text-seafoam-700 hover:bg-seafoam-500/5'
+                        ? "bg-seafoam-500/10 text-seafoam-700"
+                        : "text-slate-600 hover:text-seafoam-700 hover:bg-seafoam-500/5"
                     }`}
                   >
                     <Icon className="w-5 h-5" />
